@@ -1,6 +1,6 @@
 {
   "name": "deluminate",
-  "version": "0.7.7",
+  "version": "0.8.0",
   "description": "Invert the luminance of a website to make it easier on the eyes.",
   "scripts": {
     "lint": "jshint *.js",

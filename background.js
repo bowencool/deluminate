@@ -105,6 +105,18 @@ function init() {
 
   chrome.runtime.onMessage.addListener(
       function(request, sender, sendResponse) {
+        console.log(
+          // request,
+          // window.matchMedia('(prefers-color-scheme: dark)').matches,
+          getEnabled(),
+        )
+        if ('set_enabled' in request) {
+          if (getEnabled() !== request['set_enabled']) {
+            // setEnabled(true)
+            // updateTabs();
+            toggleEnabled();
+          }
+        }
         if (request['toggle_global']) {
           toggleEnabled();
         }

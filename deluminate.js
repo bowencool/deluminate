@@ -421,8 +421,13 @@ function init() {
   chrome.runtime.onMessage.addListener(onExtensionMessage);
   chrome.runtime.sendMessage({'init': true, 'url': window.document.baseURI},
       onExtensionMessage);
-  document.addEventListener('keydown', onEvent, false);
+  // document.addEventListener('keydown', onEvent, false);
   document.addEventListener('DOMContentLoaded', domLoaded);
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    // console.log(e.matches)
+    // chrome.runtime.sendMessage({'toggle_global': true});
+    chrome.runtime.sendMessage({'set_enabled': e.matches});
+  });
   afterDomLoaded(deepImageProcessing);
 
   animGifHandler = new MutationObserver(function(mutations, obs) {
