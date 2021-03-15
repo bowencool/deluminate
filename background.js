@@ -100,8 +100,19 @@ function processGif(src, response_cb) {
 }
 
 function init() {
+
   injectContentScripts();
-  updateTabs();
+  if (getEnabled() !== window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    toggleEnabled();
+  } else {
+    updateTabs();
+  }
+
+  // console.log(window.matchMedia('(prefers-color-scheme: dark)').matches)
+  // window.matchMedia('(prefers-color-scheme: dark)')
+  //   .addEventListener('change', e => {
+  //     console.log(e.matches, window.matchMedia('(prefers-color-scheme: dark)').matches)
+  //   })
 
   chrome.runtime.onMessage.addListener(
       function(request, sender, sendResponse) {
